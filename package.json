@@ -1,0 +1,14 @@
+{
+  "name": "campusq",
+  "private": true,
+  "description": "Waitwell — queues and bookings for any small service business: salons, clinics, repair shops, offices and help desks (Vision2Web hackathon)",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "db:reset": "npm --prefix server run db:reset",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server start",
+    "verify": "npm --prefix server run verify"
+  }
+}

@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-paper font-sans text-ink antialiased; font-feature-settings: 'ss01'; }
+  :focus-visible { outline: 3px solid rgba(85, 122, 102, 0.55); outline-offset: 2px; border-radius: 6px; }
+  h1, h2, h3 { text-wrap: balance; }
+  h1, h2 { @apply font-serif; font-variation-settings: 'SOFT' 100, 'WONK' 0; letter-spacing: -0.01em; }
+  ::selection { background: #fbe9de; }
+}
+
+@layer components {
+  /* Token numbers: a soft serif with even-width figures, so H024 never jitters as it changes. */
+  .token-numerals {
+    @apply font-serif font-semibold leading-none;
+    font-variation-settings: 'SOFT' 100, 'WONK' 0, 'opsz' 96;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .card { @apply rounded-3xl bg-cream shadow-soft; }
+  .input {
+    @apply w-full rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink placeholder:text-ink-muted/70
+           transition-colors focus:border-sage focus:outline-none focus:ring-4 focus:ring-sage/15;
+  }
+  .input[aria-invalid='true'] { @apply border-rose; }
+  .chip { @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-sm font-medium; }
+  .link { @apply font-semibold text-sage-deep underline decoration-sage/40 underline-offset-4 hover:decoration-sage; }
+  .eyebrow { @apply text-sm font-semibold text-sage-deep; }
+  .dashed-divider { background-image: linear-gradient(to right, #ebe3d8 50%, transparent 50%); background-size: 10px 1.5px; background-repeat: repeat-x; height: 1.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@keyframes rise-in { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } }
+.flip-in { animation: rise-in 360ms cubic-bezier(.2,.8,.2,1); }
+@keyframes toast-in { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+.toast-in { animation: toast-in 180ms ease-out; }
+@keyframes breathe { 0%, 100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.18); opacity: .55; } }
+.breathe { animation: breathe 2.4s ease-in-out infinite; }
